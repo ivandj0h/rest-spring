@@ -16,11 +16,11 @@ public class User {
     private String username;
     private String email;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
     Address address;
     private String phone;
     private String website;
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "company_id")
+    @JoinColumn(name = "company_id", referencedColumnName = "id")
     Company company;
 }
