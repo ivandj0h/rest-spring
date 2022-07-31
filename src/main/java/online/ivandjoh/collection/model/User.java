@@ -3,26 +3,24 @@ package online.ivandjoh.collection.model;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 @Entity
-@Table(name = "user")
 @Data
+@Table(name = "user_table")
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String name;
     private String username;
     private String email;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<UserAddress> address = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    Address address;
     private String phone;
     private String website;
     @OneToOne(cascade = CascadeType.ALL)
-    private Set<UserCompany> company;
+    @JoinColumn(name = "company_id")
+    Company company;
 }
