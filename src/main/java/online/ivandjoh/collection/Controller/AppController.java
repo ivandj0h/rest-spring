@@ -5,6 +5,7 @@ import online.ivandjoh.collection.Http.HttpResponse.UserResponse;
 import online.ivandjoh.collection.service.AppService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,7 @@ public class AppController {
     }
 
     @PostMapping("/user")
+    @ResponseStatus(HttpStatus.CREATED)
     public UserResponse createUser(@RequestBody UserResponse user) {
         log.info("Create user {}", appService.createUser(baseUri, user));
         return appService.createUser(baseUri, user);
